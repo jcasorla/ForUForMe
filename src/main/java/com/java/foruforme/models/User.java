@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -38,9 +39,14 @@ public class User {
     @Email(message="Email must be a valid address")
     private String email;
     
+    @Size(min=8, message="Password should have at least 8 characters")
+    private String password;
+    
     @Pattern(regexp = "(\\+61|0)[0-9]{9}")
     private String phoneNo;
     
+    @Transient
+    private String passwordConfirmation;
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
@@ -94,11 +100,23 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getPhoneNo() {
 		return phoneNo;
 	}
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
+	}
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
