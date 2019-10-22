@@ -40,8 +40,8 @@ public class Message {
     private User sender;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user2_id")
-    private User receiver;
+    @JoinColumn(name="serviceexc_id")
+    private ServiceExc serviceExc;
     
 //    @ManyToMany(fetch = FetchType.LAZY)
 //	@JoinTable(
@@ -54,54 +54,80 @@ public class Message {
     public Message() {    	
     }
 
+	
+    
 	public Long getId() {
 		return id;
 	}
+
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
+
 	public String getComment() {
 		return comment;
 	}
+
+
 
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
 
+
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
+
 
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
+
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
+
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
+
+
 	public User getSender() {
 		return sender;
 	}
+
+
 
 	public void setSender(User sender) {
 		this.sender = sender;
 	}
 
-	public User getReceiver() {
-		return receiver;
+
+
+	public ServiceExc getServiceExc() {
+		return serviceExc;
 	}
 
-	public void setReceiver(User receiver) {
-		this.receiver = receiver;
+
+
+	public void setServiceExc(ServiceExc serviceExc) {
+		this.serviceExc = serviceExc;
 	}
-    
+
+
+
 	@PrePersist
     protected void onCreate(){
         this.createdAt = new Date();

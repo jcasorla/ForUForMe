@@ -1,12 +1,17 @@
 package com.java.foruforme.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -43,6 +48,13 @@ public class User {
     public User() {
     	
     }
+    @ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "users_servicesexc",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns = @JoinColumn(name = "serviceexc_id")
+		)
+	private List <User> users; 
     
     @PrePersist
     protected void onCreate(){
@@ -100,5 +112,11 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-    
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	
 }
