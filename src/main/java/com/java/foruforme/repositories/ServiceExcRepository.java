@@ -8,9 +8,11 @@ import com.java.foruforme.models.ServiceExc;
 
 @Repository
 public interface ServiceExcRepository extends CrudRepository <ServiceExc, Long> {
+
     List<ServiceExc> findAll();
 
 //	List<ServiceExc> findByLocation(String location);
 //
 //	List<ServiceExc> findByService(String service);
+
 }

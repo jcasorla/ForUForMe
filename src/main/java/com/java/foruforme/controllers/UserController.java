@@ -1,5 +1,6 @@
 package com.java.foruforme.controllers;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,9 +25,13 @@ import com.java.foruforme.validator.UserValidator;
 
 
 
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 @Controller
 public class UserController {
-
+	
 	private UserValidator userValidator;
 	private ServiceExcService serviceExcService;
 	private UserService userService;
@@ -36,11 +41,13 @@ public class UserController {
 		this.serviceExcService = serviceExcService;
 		this.userService = userService;
 	}
+
 	//index view
 	@RequestMapping("/")
     public String home() {
     	return "index.jsp";
     }
+
 
 
 	@PostMapping("/search")
@@ -99,4 +106,5 @@ public class UserController {
     	return "logAndReg.jsp";
     	}
     }
+
 }

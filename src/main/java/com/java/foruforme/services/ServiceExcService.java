@@ -1,8 +1,16 @@
 package com.java.foruforme.services;
 
 import java.util.List;
+
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+
+
+
+import java.util.Optional;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 
@@ -11,6 +19,7 @@ import com.java.foruforme.repositories.ServiceExcRepository;
 
 @Service
 public class ServiceExcService {
+
     private final ServiceExcRepository serviceExcRepository;
 
     public ServiceExcService(ServiceExcRepository serviceExcRepository) {
@@ -36,6 +45,8 @@ public ServiceExc addServiceExc(ServiceExc serviceExc) {
     return serviceExcRepository.save(serviceExc);
 }
 
+
+
 public void deleteServiceExc(Long id) {
     serviceExcRepository.deleteById(id);
 }
@@ -44,6 +55,8 @@ public ServiceExc submitEdit(ServiceExc serviceExc) {
     serviceExcRepository.save(serviceExc);
     return serviceExc;
 }
+
+ 
 
 //public List<ServiceExc> getSearchLocations(String location) {
 //	return serviceExcRepository.findByLocation(location);
