@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <!DOCTYPE html>
 <html>
@@ -37,21 +37,37 @@
     </ul>
   </div>
 </nav>
-	<div class="jumbotron">
-	
-	
+<div class="jumbotron">
 	 <form class="form-inline my-2 my-lg-0" action="/search" method="post">
 	      <input class="form-control mr-sm-2" type="text" name="location" placeholder="By location">
-	<!--       <input class="form-control mr-sm-2" type="text" name="service" placeholder="By service"> -->
-	      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-	    </form>
-	    <br>
-
-	     <form class="form-inline my-2 my-lg-0" action="/search2" method="post">
-	     <!--  <input class="form-control mr-sm-2" type="text" name="location" placeholder="By location"> -->
 	      <input class="form-control mr-sm-2" type="text" name="service" placeholder="By service">
 	      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 	    </form>
+	    
+	    <c:when test="${service.location.contains(location) == true}">
+	    <c:forEach items="${services}" var="service">
+	    <div class="card border-primary mb-3" style="max-width: 20rem;">
+		  <div class="card-header">Services available</div>
+		  <div class="card-body">
+		    <h4 class="card-title">{service.address}</h4>
+		    <p class="card-text">{service.description}</p>
+		  </div>
+		</div>
+		 </c:forEach>
+		 </c:when>
+		 
+		  <c:when test="${service.service.contains(service) == true}">
+	    <c:forEach items="${servicesexc}" var="service">
+	    <div class="card border-primary mb-3" style="max-width: 20rem;">
+		  <div class="card-header">Services available</div>
+		  <div class="card-body">
+		    <h4 class="card-title">{service.address}</h4>
+		    <p class="card-text">{service.description}</p>
+		  </div>
+		</div>
+		 </c:forEach>
+		 </c:when>
+	    
 </div>
 </body>
 </html>
