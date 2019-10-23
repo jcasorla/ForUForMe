@@ -28,137 +28,151 @@ public class ServiceExc {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-
-@Size(min=1, message="Service must have a description")
-private String description;
-
-@Size(min=1, message="Service must have a date! This is required.")
-private String serviceExcDate;
-
-@Size(min=1, message="An address is required")
-private String address;
-
-@Size(min=1, message="State is required")
-private String state;
-
-@Column(updatable=false)
-private Date createdAt;
-private Date updatedAt;
-
-@ManyToMany(fetch = FetchType.LAZY)
-@JoinTable(
-        name = "ratings",
-        joinColumns = @JoinColumn(name="serviceexc_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-
-private List <User> users; 
-
-//host id
-@ManyToOne(fetch= FetchType.LAZY)
-@JoinColumn(name="user_id")
-private User user;
-
-public User getUser() {
-	return user;
-}
-
-public void setUser(User user) {
-	this.user = user;
-}
-
-public List<Rating> getRatings() {
-	return ratings;
-}
-
-public void setRatings(List<Rating> ratings) {
-	this.ratings = ratings;
-}
-
-@OneToMany(mappedBy="serviceExc", fetch = FetchType.LAZY)
-    private List<Rating> ratings;
-
-
-
-
-public ServiceExc() {
-
-}
-
- @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
-
-	public Long getId() {
-		return id;
+	
+	@Size(min=1, message="Service must have a name")
+	private String name;
+	
+	@Size(min=1, message="Service must have a description")
+	private String description;
+	
+	@Size(min=1, message="Service must have a date! This is required.")
+	private String serviceExcDate;
+	
+	@Size(min=1, message="An address is required")
+	private String address;
+	
+	@Size(min=1, message="State is required")
+	private String state;
+	
+	@Column(updatable=false)
+	private Date createdAt;
+	private Date updatedAt;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "ratings",
+			joinColumns = @JoinColumn(name="serviceexc_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+		)
+	
+	private List <User> users; 
+	
+	//host
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@OneToMany(mappedBy="serviceExc", fetch = FetchType.LAZY)
+		private List<Rating> ratings;
+	
+	
+	public ServiceExc() {
+	
 	}
+	
+	 @PrePersist
+	    protected void onCreate(){
+	        this.createdAt = new Date();
+	    }
+	    @PreUpdate
+	    protected void onUpdate(){
+	        this.updatedAt = new Date();
+	    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	public String getDescription() {
-		return description;
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+		public String getName() {
+			return name;
+		}
 
-	public String getServiceExcDate() {
-		return serviceExcDate;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
 
-	public void setServiceExcDate(String serviceExcDate) {
-		this.serviceExcDate = serviceExcDate;
-	}
+		public String getDescription() {
+			return description;
+		}
 
-	public String getAddress() {
-		return address;
-	}
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+		public String getServiceExcDate() {
+			return serviceExcDate;
+		}
 
-	public String getState() {
-		return state;
-	}
+		public void setServiceExcDate(String serviceExcDate) {
+			this.serviceExcDate = serviceExcDate;
+		}
 
-	public void setState(String state) {
-		this.state = state;
-	}
+		public String getAddress() {
+			return address;
+		}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+		public void setAddress(String address) {
+			this.address = address;
+		}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+		public String getState() {
+			return state;
+		}
 
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
+		public void setState(String state) {
+			this.state = state;
+		}
 
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+		public Date getCreatedAt() {
+			return createdAt;
+		}
 
-	public List<User> getUsers() {
-		return users;
-	}
+		public void setCreatedAt(Date createdAt) {
+			this.createdAt = createdAt;
+		}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+		public Date getUpdatedAt() {
+			return updatedAt;
+		}
 
-        
+		public void setUpdatedAt(Date updatedAt) {
+			this.updatedAt = updatedAt;
+		}
+
+		public List<User> getUsers() {
+			return users;
+		}
+
+		public void setUsers(List<User> users) {
+			this.users = users;
+		}
+
+		public User getUser() {
+			return user;
+		}
+
+		public void setUser(User user) {
+			this.user = user;
+		}
+
+		public List<Rating> getRatings() {
+			return ratings;
+		}
+
+		public void setRatings(List<Rating> ratings) {
+			this.ratings = ratings;
+		}
+
+		
+//
+//		public void setRating(List<Rating>ratings) {
+//			this.ratings = ratings;
+//		}
+		
         
 
 }

@@ -27,6 +27,14 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
+	
+//	ADDED
+	
+	@Column
+    private String profilePic;
+	
+// END ADDED	
+	
 	@Size(min=1, message="Username is required!")
     private String userName;
 	
@@ -51,7 +59,13 @@ public class User {
     private Date createdAt;
     private Date updatedAt;
     
-    public User() {
+    public String getProfilePic() {
+		return profilePic;
+	}
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+	public User() {
     	
     }
     @ManyToMany(fetch = FetchType.LAZY)

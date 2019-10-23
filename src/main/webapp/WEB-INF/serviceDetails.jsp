@@ -9,8 +9,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
 <title>Individual Service Details</title>
 </head>
 
@@ -46,9 +50,11 @@
 <!-- LEFT PANEL -->
 
 	<div class="leftPanel w-25 mx-3" style="border:1px green dotted">
-		<div class="image1 w-100" style="border :1px pink solid; height: 200px; width: 200px;""></div>
-		<div class="image2 w-100" style="border :1px pink solid; height: 200px; width: 200px;"></div>
-		<div class="serviceDescription w-100" style="border :1px pink solid; height: 200px; width: 200px;"> Service Description 
+		<div class="image1 w-100" style="border :1px pink solid; height: 200px; width: 200px;">
+		<img src="https://images.pexels.com/photos/1500459/pexels-photo-1500459.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="img-fluid">
+		</div>
+
+		<div class="serviceDescription w-100" style="border :1px pink solid; height: 400px; width: 200px;"> Service Description 
 		${serviceExcService.id}<br>
 		${serviceExcService.address}<br>
 		${serviceExcService.description}<br>
@@ -58,25 +64,25 @@
 
 	
 <!-- RIGHT PANEL -->
-	<div class="rightPanel w-50 mx-3"style="border:1px green dotted">
-		<div class="message w-100 overflow-auto" style="border :1px pink solid; height: 400px; width: 300px;"> 
+	<div class="rightPanel w-50 mx-3 px-3"style="border:1px green dotted">
+		<div class="message w-100 overflow-auto" style="border :1px pink solid; height: 400px; width: 600px;"> 
 		
-		<table class="table table-striped">
-  <thead>
-  
-    <tr>
-      <th scope="col">Rating</th>
-      <th scope="col">Comment</th>
-      <th scope="col">Created By</th>
 
-    </tr>
-   
-  </thead>
-  <tbody>
-  
-<!--   LOOP HERE -->
-<!-- ITEMS VARIABLE IS WHAT ATTRIBUTE YOU ADDED TO MODEL IN CONTROLLER -->
-	<c:forEach items="${allRatings}" var="r">
+<!-- LOOP HERE -->
+			<div class="rating w-100" style=" ">
+				<div class="profilepic" style=" height: 60px; width: 60px;">
+					<img src="https://images.pexels.com/photos/555790/pexels-photo-555790.png?auto=compress&cs=tinysrgb&dpr=2&w=500" class="img-fluid" style="border-radius:50px;">
+				</div>
+				
+				<div class="comment w-100 " style="; height: 100px;">
+				<h5>Jose C.  <img src="img/star.jpg"> </h5> 
+				<p> It was definitely worth staying here !</p>
+				</div>	
+			</div>
+<!-- END OF LOOP	 -->	
+			
+			
+<%-- 	<c:forEach items="${allRatings}" var="r">
     <tr>
       <th scope="row"> 
       		<c:out value ="${r.rating}"/> 
@@ -85,9 +91,8 @@
       <td><c:out value ="${r.author}"/></td>
     </tr>
     </c:forEach>
+ --%>
 
-  </tbody>
-</table>
 </div>		
 		
 		
@@ -95,12 +100,13 @@
 		
 		<form:errors class="text-danger" path="sendMessage.*"/></p>
 		    
-		    <form:form method="POST" action="/service/details/${servicesexc.id}/addrating" modelAttribute="addRating">
+		    <form:form method="POST" action="/service/details/${servicesexc.id}" modelAttribute="addRating">
 		    		      
 		    		 <p>
 		            <form:label path="comment">Leave a Rating!</form:label>
-		            <form:textarea rows="5"  path="comment"/>
-		            
+		            <br>
+		            <form:textarea rows="5" cols="40" path="comment"/>
+		            <br>
 		            <form:select path="rating">
 		            	<form:option value="1"/>
 		            	<form:option value="2"/>
@@ -108,10 +114,10 @@
 		            	<form:option value="4"/>
 		            	<form:option value="5"/>
 
-		            </form:select>
+		            </form:select> Stars
 		        </p>
 
-		        <input type="submit" class="btn btn-outline-primary btn-sm mx-auto"value="Add Rating"/>
+		        <input type="submit" class="btn btn-outline-primary btn-sm mx-auto"value="addRating"/>
 		    </form:form>
 	</div>
 </div>

@@ -13,17 +13,20 @@ import java.util.Optional;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-
+import com.java.foruforme.models.Rating;
 import com.java.foruforme.models.ServiceExc;
+import com.java.foruforme.repositories.RatingRepository;
 import com.java.foruforme.repositories.ServiceExcRepository;
 
 @Service
 public class ServiceExcService {
 
     private final ServiceExcRepository serviceExcRepository;
+    private final RatingRepository ratingRepository;
 
-    public ServiceExcService(ServiceExcRepository serviceExcRepository) {
+    public ServiceExcService(ServiceExcRepository serviceExcRepository, RatingRepository ratingRepository) {
         this.serviceExcRepository = serviceExcRepository;
+        this.ratingRepository = ratingRepository;
 
     }
 
@@ -65,5 +68,15 @@ public List<ServiceExc> getSearchLocations(String state) {
 public List<ServiceExc> getSearchServices(String description) {
 	return serviceExcRepository.findByDescription(description);
 }
+
+//RATINGS 
+
+public Rating addRating(Rating rating) {
+	return ratingRepository.save(rating);
+}
+
+// END RATINGS
+
+
 }
 

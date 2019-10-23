@@ -41,6 +41,7 @@ public class ServiceExcController {
 		return "serviceDetails.jsp";
 	}
 	
+
 	//new
     @RequestMapping("/services/new")
     public String newService(@ModelAttribute("serviceExc") ServiceExc serviceExc, Model model,HttpSession session) {
@@ -143,6 +144,22 @@ public class ServiceExcController {
 	     
 		 
 	  }
+
+	
+	@PostMapping("/service/details/{id}")
+	public String addRating(@PathVariable("id")Long id, Model model, @ModelAttribute("addRating") Rating rating, BindingResult result, HttpSession session) {	
+	 	if(result.hasErrors()) {
+
+	 		return "redirect:/";
+	 	} else {
+		model.addAttribute("user", session.getAttribute("userId"));
+		ServiceExc oneService = serviceExcService.findServiceExc(id);
+		model.addAttribute("serviceExcService", oneService);
+		serviceExcService.addRating(rating);
+		return "serviceDetails.jsp";
+	}
+}
+
 }
 
 
