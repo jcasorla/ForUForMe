@@ -1,6 +1,5 @@
 package com.java.foruforme.controllers;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import javax.servlet.http.HttpSession;

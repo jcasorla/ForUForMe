@@ -56,29 +56,63 @@
 		</div>
 	</div>
 
-<!-- CENTER PANEL -->
-	
-	<div class="centerPanel w-25 mx-3" style="border:1px green dotted">
-		<div class="message w-100" style="border :1px pink solid; height: 400px; width: 300px;""> 
-		<form:errors class="text-danger" path="sendMessage.*"/></p>
-		    
-		    <form:form method="POST" action="/service/details/${servicesexc.id}" modelAttribute="sendMessage">
-		    		      
-		    		 <p>
-		            <form:label path="address">Send Message:</form:label>
-		            <form:input type="textarea" path="address"/>
-		        </p>
-
-		        <input type="submit" class="btn btn-outline-primary btn-sm mx-auto"value="Send Message"/>
-		    </form:form></div> 
-		<div class="mx-auto" style="width:200px;">
-		<button type="button" class="btn btn-primary btn-lg mx-auto">Book Service!</button>
-		</div>
-	</div>
 	
 <!-- RIGHT PANEL -->
-	<div class="rightPanel w-25 mx-3"style="border:1px green dotted">
-		<div class="message w-100 overflow-auto" style="border :1px pink solid; height: 600px; width: 300px;""> Ratings and Comments</div>
+	<div class="rightPanel w-50 mx-3"style="border:1px green dotted">
+		<div class="message w-100 overflow-auto" style="border :1px pink solid; height: 400px; width: 300px;"> 
+		
+		<table class="table table-striped">
+  <thead>
+  
+    <tr>
+      <th scope="col">Rating</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Created By</th>
+
+    </tr>
+   
+  </thead>
+  <tbody>
+  
+<!--   LOOP HERE -->
+<!-- ITEMS VARIABLE IS WHAT ATTRIBUTE YOU ADDED TO MODEL IN CONTROLLER -->
+	<c:forEach items="${allRatings}" var="r">
+    <tr>
+      <th scope="row"> 
+      		<c:out value ="${r.rating}"/> 
+      </th>
+      <td><c:out value ="${r.comment}"/></td>
+      <td><c:out value ="${r.author}"/></td>
+    </tr>
+    </c:forEach>
+
+  </tbody>
+</table>
+</div>		
+		
+		
+		
+		
+		<form:errors class="text-danger" path="sendMessage.*"/></p>
+		    
+		    <form:form method="POST" action="/service/details/${servicesexc.id}/addrating" modelAttribute="addRating">
+		    		      
+		    		 <p>
+		            <form:label path="comment">Leave a Rating!</form:label>
+		            <form:textarea rows="5"  path="comment"/>
+		            
+		            <form:select path="rating">
+		            	<form:option value="1"/>
+		            	<form:option value="2"/>
+		            	<form:option value="3"/>
+		            	<form:option value="4"/>
+		            	<form:option value="5"/>
+
+		            </form:select>
+		        </p>
+
+		        <input type="submit" class="btn btn-outline-primary btn-sm mx-auto"value="Add Rating"/>
+		    </form:form>
 	</div>
 </div>
 </body>
