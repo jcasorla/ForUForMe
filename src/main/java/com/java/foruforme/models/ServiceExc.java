@@ -28,6 +28,7 @@ public class ServiceExc {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+
 @Size(min=1, message="Service must have a description")
 private String description;
 
@@ -93,76 +94,70 @@ public ServiceExc() {
         this.updatedAt = new Date();
     }
 
-public Long getId() {
-    return id;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setId(Long id) {
-    this.id = id;
-}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public String getDescription() {
-    return description;
-}
+	public String getDescription() {
+		return description;
+	}
 
-public void setDescription(String description) {
-    this.description = description;
-}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-public String getServiceExcDate() {
-    return serviceExcDate;
-}
+	public String getServiceExcDate() {
+		return serviceExcDate;
+	}
 
-public void setServiceExcDate(String serviceExcDate) {
-    this.serviceExcDate = serviceExcDate;
-}
+	public void setServiceExcDate(String serviceExcDate) {
+		this.serviceExcDate = serviceExcDate;
+	}
 
-public String getAddress() {
-    return address;
-}
+	public String getAddress() {
+		return address;
+	}
 
-public void setAddress(String address) {
-    this.address = address;
-}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-public String getState() {
-    return state;
-}
+	public String getState() {
+		return state;
+	}
 
-public void setState(String state) {
-    this.state = state;
-}
+	public void setState(String state) {
+		this.state = state;
+	}
 
-public Date getCreatedAt() {
-    return createdAt;
-}
-//        public List<Rating> getRatings(){
-//            return ratings;
-//        }
+	public Date getCreatedAt() {
+		return createdAt;
+	}
 
-public void setCreatedAt(Date createdAt) {
-    this.createdAt = createdAt;
-}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
 
-public Date getUpdatedAt() {
-    return updatedAt;
-}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
 
-public void setUpdatedAt(Date updatedAt) {
-    this.updatedAt = updatedAt;
-}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
-public List<User> getUsers() {
-    return users;
-}
+	public List<User> getUsers() {
+		return users;
+	}
 
-public void setUsers(List<User> users) {
-    this.users = users;
-}
-//
-//        public void setRating(List<Rating>ratings) {
-//            this.ratings = ratings;
-//        }
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
         
         
 

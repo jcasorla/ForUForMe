@@ -22,7 +22,7 @@
         <a class="nav-link" href="/dashboard"> Dashboard <span class="sr-only">(current)</span></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/about">About Us</a>
+        <a class="nav-link" href="/about/${user.id}">Profile</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="/">Register</a>
@@ -39,7 +39,7 @@
    <div class="jumbotron">
    <h1>Search by Service testing if works</h1>
 <%--  <c:when test="${serviceexc.service.contains(service) == true}"> --%>
-	    <c:forEach items="${servicesexc}" var="service">
+	    <%-- <c:forEach items="${servicesexc}" var="service"> --%>
 	    <div class="card border-primary mb-3" style="max-width: 20rem;">
 		  <div class="card-header">Services available</div>
 		  <div class="card-body">
@@ -47,7 +47,7 @@
 		    <p class="card-text">{service.description}</p>
 		  </div>
 		</div>
-		 </c:forEach>
+		<%--  </c:forEach> --%>
 	<%-- 	</c:when> --%>
   </div>
 
