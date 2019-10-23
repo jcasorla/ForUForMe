@@ -25,10 +25,10 @@
         <a class="nav-link" href="/about">About Us</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/register">Register</a>
+        <a class="nav-link" href="/index">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/register">Login</a>
+        <a class="nav-link" href="/index">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/logout">Logout</a>
@@ -39,7 +39,7 @@
   <div class="jumbotron">
   
   <h1>Search Location testing if works</h1>
-  	<%--  <c:when test="${service.location.contains(location) == true}"> --%>
+  	<%--  <c:when test="${serviceexc.state.contains(location) == true}"> --%>
 	    <c:forEach items="${servicesexc}" var="service">
 	    <div class="card border-primary mb-3" style="max-width: 20rem;">
 		  <div class="card-header">Services available</div>
@@ -49,7 +49,7 @@
 		  </div>
 		</div>
 		 </c:forEach>
-	<%-- 	 </c:when> --%>
+	<%--  </c:when> --%>
   </div>
 
 </body>

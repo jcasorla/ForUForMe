@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,10 +30,10 @@
         <a class="nav-link" href="/about">About Us</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/register">Register</a>
+        <a class="nav-link" href="/index">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/register">Login</a>
+        <a class="nav-link" href="/index">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/logout">Logout</a>
@@ -41,7 +42,8 @@
   </div>
 </nav>
 	<div class="jumbotron">
-	
+	<!-- <div class="imgOne">
+	</div> -->
 	<form class="form-inline my-2 my-lg-0" action="/search" method="post">
 	     <input type="hidden" name="formLocation" value="location">
 	     	      	     <input type="hidden" name="location" value="location">

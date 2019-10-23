@@ -44,7 +44,7 @@ public class UserController {
 	}
 
 	//index view
-	@RequestMapping("/")
+	@RequestMapping("/index")
     public String home() {
     	return "index.jsp";
     }
@@ -83,7 +83,7 @@ public class UserController {
 	}
 	
 //	Login and Registration view
-		@RequestMapping("/index")
+		@RequestMapping("/")
 	    public String logAndReg(@Valid @ModelAttribute("user") User user) {
 	    	return "logAndReg.jsp";
 	    }
@@ -97,7 +97,7 @@ public class UserController {
         }
         User u = userService.registerUser(user);
         session.setAttribute("userId", u.getId());
-        return "redirect:/service/details/"+u.getId();
+        return "redirect:/index";
     }
     //login
     @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -108,11 +108,19 @@ public class UserController {
     	if(isAuthenticated) {
     		User u = userService.findByEmail(email);
     		session.setAttribute("userId", u.getId());
-    		 return "redirect:/service/details/"+u.getId();
+    		 return "redirect:/index";
     	}else {
     	model.addAttribute("error", "Invalid Credentials. Please try again.");
     	return "logAndReg.jsp";
     	}
+    }
+    
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        // invalidate session
+        // redirect to login page
+    	session.invalidate();
+    	return "redirect:";
     }
 
 }
