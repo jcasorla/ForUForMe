@@ -23,9 +23,6 @@ import com.java.foruforme.services.UserService;
 import com.java.foruforme.validator.UserValidator;
 
 
-
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -114,6 +111,47 @@ public class UserController {
     	return "logAndReg.jsp";
     	}
     }
+    
+    @RequestMapping("/about")
+    public String profile(@Valid @ModelAttribute("user")User user) {
+    	return "profile.jsp";
+    }
+    
+    @RequestMapping("/about/{id}")
+    public String profile(@Valid @PathVariable("id") Long id,@ModelAttribute("user")User user, Model model,HttpSession session) {
+    	if(session.getAttribute("userId") == null) {
+//    		System.out.println("userId");
+   		return "redirect:";
+   	}else {
+   		User user2 = userService.findUserById(id);
+   		model.addAttribute("user", user2);
+//   		System.out.println("userId");
+   		return "profile.jsp";
+   	}
+    	
+    }
+    
+    
+    //idea to avoid hacking profile form URL to work on it later
+//    @RequestMapping("/about/{id}")
+//   	public String displayEditPage(Model model, @ModelAttribute("user") User myUser, @PathVariable("id") Long uId,
+//   			HttpSession session) {
+//
+//   		// To avoid hacking via URL /profile/{id}
+//
+//   		Long userId = (Long) session.getAttribute("userId");
+//   		User u = userService.findUserById(userId);
+//
+//   		User profileUser = userService.findUserById(userId);
+//
+//   		if (u.getId() ==  profileUser.getUserName().getId()) {
+//
+//
+//   			return "profile.jsp";
+//   		} else {
+//   			return "redirect:/";
+//   		}
+//   	}
     
     @RequestMapping("/logout")
     public String logout(HttpSession session) {

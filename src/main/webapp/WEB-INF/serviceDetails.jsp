@@ -27,7 +27,7 @@
         <a class="nav-link" href="/dashboard"> Dashboard <span class="sr-only">(current)</span></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/about">About Us</a>
+        <a class="nav-link" href="/about">Profile</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="/">Register</a>
