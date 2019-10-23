@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.java.foruforme.models.Rating;
 import com.java.foruforme.models.ServiceExc;
 import com.java.foruforme.services.ServiceExcService;
 import com.java.foruforme.validator.UserValidator;
@@ -33,7 +34,7 @@ public class ServiceExcController {
 
 
 	@RequestMapping("/service/details/{id}")
-	public String view(@PathVariable("id")Long id, Model model, @ModelAttribute("sendMessage") ServiceExc serviceExc ) {
+	public String view(@PathVariable("id")Long id, Model model, @ModelAttribute("sendMessage") ServiceExc serviceExc, @ModelAttribute("addRating") Rating rating) {
 		ServiceExc oneService = serviceExcService.findServiceExc(id);
 		model.addAttribute("serviceExcService", oneService);
 		return "serviceDetails.jsp";

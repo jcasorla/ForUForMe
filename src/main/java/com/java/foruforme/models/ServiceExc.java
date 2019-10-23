@@ -1,6 +1,7 @@
 package com.java.foruforme.models;
 
 import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -48,6 +50,10 @@ public class ServiceExc {
 			joinColumns = @JoinColumn(name="serviceexc_id"),
 			inverseJoinColumns = @JoinColumn(name = "user_id")
 		)
+	
+//	@OneToMany(mappedBy="servicesexc", fetch = FetchType.LAZY)
+//		private List<Rating> ratings;
+	
 	private List <User> users; 
 	
 	public ServiceExc() {
@@ -127,6 +133,9 @@ public class ServiceExc {
 			this.users = users;
 		}
 
+//		public void setRating(List<Rating>ratings) {
+//			this.ratings = ratings;
+//		}
 		
 		
 
