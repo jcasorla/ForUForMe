@@ -11,8 +11,8 @@ public interface ServiceExcRepository extends CrudRepository <ServiceExc, Long> 
 
     List<ServiceExc> findAll();
 
-//	List<ServiceExc> findByLocation(String location);
-//
-//	List<ServiceExc> findByService(String service);
+	List<ServiceExc> findByState(String state);
+
+	List<ServiceExc> findByDescription(String description);
 
 }

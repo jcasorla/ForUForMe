@@ -65,22 +65,22 @@
 			           <form:label path="email">Email:</form:label>
 			           <form:input type="email" path="email"/>
 			       </p>
-<!-- 			        <p>
-			            <form:label path="location">Location:</form:label>
-			            <form:input type="text" path="location"/>
-			        </p>
+		       <%--  <p>
+			            <form:label path="address">Location:</form:label>
+			            <form:input type="text" path="address"/>
+			        </p> --%>
 			        
-			        <form:select path="state">
+			       <%--  <form:select path="state">
 	        			<form:option value="AZ" label = "AZ" />
 					 	<form:option value="CA" label = "CA" />
 						<form:option value="NY" label = "NY" />
 					    <form:option value="NV" label = "NV" />
 					    <form:option value="IL" label = "IL" />
 						<form:option value="HI" label = "HI" />							  
-					</form:select>
+					</form:select> --%>
        
        
-			        <p> -->
+			      
 			            <form:label path="password">Password:</form:label>
 			            <form:password path="password"/>
 			        </p>

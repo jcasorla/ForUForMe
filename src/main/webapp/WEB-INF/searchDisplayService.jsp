@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,11 +35,10 @@
       </li>
     </ul>
   </div>
-</nav>
-<div class="jumbotron">
-	 <h1>Testing if display all works</h1>
-	    
-	   <%--  <c:when test="${service.location.contains(location) == true}"> --%>
+  </nav>
+   <div class="jumbotron">
+   <h1>Search by Service testing if works</h1>
+   <%--  <c:when test="${service.service.contains(service) == true}"> --%>
 	    <c:forEach items="${servicesexc}" var="service">
 	    <div class="card border-primary mb-3" style="max-width: 20rem;">
 		  <div class="card-header">Services available</div>
@@ -50,9 +48,8 @@
 		  </div>
 		</div>
 		 </c:forEach>
-	<%-- 	 </c:when> --%>
-		 
-	    
-</div>
+		<%--  </c:when> --%>
+  </div>
+
 </body>
 </html>

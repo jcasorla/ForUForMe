@@ -58,12 +58,12 @@ public ServiceExc submitEdit(ServiceExc serviceExc) {
 
  
 
-//public List<ServiceExc> getSearchLocations(String location) {
-//	return serviceExcRepository.findByLocation(location);
-//}
-//
-//public List<ServiceExc> getSearchServices(String service) {
-//	return serviceExcRepository.findByService(service);
-//}
+public List<ServiceExc> getSearchLocations(String state) {
+	return serviceExcRepository.findByState(state);
+}
+
+public List<ServiceExc> getSearchServices(String description) {
+	return serviceExcRepository.findByDescription(description);
+}
 }
 

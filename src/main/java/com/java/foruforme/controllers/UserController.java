@@ -1,6 +1,6 @@
 package com.java.foruforme.controllers;
 
-<<<<<<< HEAD
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,6 +29,7 @@ import com.java.foruforme.validator.UserValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@SuppressWarnings("unused")
 @Controller
 public class UserController {
 	
@@ -51,34 +52,41 @@ public class UserController {
 
 
 	@PostMapping("/search")
-	public String searchLocation(@RequestParam("location") String location) {
-		return "redirect:/searchDisplay"+location;
-		//to add after "+location" after searchDisplay/
+	public String searchLocation(@RequestParam("location") String location, @RequestParam("service") String service, @RequestParam("formLocation") String formLocation) {
+		if (formLocation.equals("location")) {
+			return "redirect:/search/location/"+location;
+
+		} else {
+			return "redirect:/search/service/"+service;
+
+		}
+		
 	}
-	@PostMapping("/search2")
-	public String searchService(@RequestParam("service") String service) {
-		return "redirect:/searchDisplay"+ service;
-		//to add after "+service" after searchDisplay/
-	}
-	
-//	@RequestMapping("/search/{location}")
-//	public String searchLocation(@PathVariable("location") String location, Model model) {
-//		List<ServiceExc> locations = serviceExcService.getSearchLocations(location);
-//		model.addAttribute("location", locations);
-//		return "searchDisplay.jsp";
-//	}
-//	@RequestMapping("/search/{service}")
-//	public String searchService(@PathVariable("service") String service, Model model) {
-//		List<ServiceExc> services = serviceExcService.getSearchServices(service);
-//		model.addAttribute("service", services);
-//		return "searchDisplay.jsp";
+//	@PostMapping("/search2")
+//	public String searchService(@RequestParam("service") String service) {
+//		return "redirect:/searchDisplay"+ service;
+//	
 //	}
 	
-	//Log and Reg view
-//		@RequestMapping("/loginAndReg")
-//	    public String logAndReg() {
-//	    	return "logAndReg.jsp";
-//	    }
+	@RequestMapping("/search/location/{query}")
+	public String searchLocation(@PathVariable("query") String query, Model model) {
+		
+		List<ServiceExc> locations = serviceExcService.getSearchLocations(query);
+		model.addAttribute("location", locations);
+		return "searchDisplayLocation.jsp";
+	}
+	@RequestMapping("/search/service/{query}")
+	public String searchService(@PathVariable("query") String query, Model model) {
+		List<ServiceExc> services = serviceExcService.getSearchServices(query);
+		model.addAttribute("service", services);
+		return "searchDisplayService.jsp";
+	}
+	
+//	Login and Registration view
+		@RequestMapping("/index")
+	    public String logAndReg(@Valid @ModelAttribute("user") User user) {
+	    	return "logAndReg.jsp";
+	    }
 	
 	//registration 
     @RequestMapping(value="/registration", method=RequestMethod.POST)
@@ -89,7 +97,7 @@ public class UserController {
         }
         User u = userService.registerUser(user);
         session.setAttribute("userId", u.getId());
-        return "redirect:/service/details";
+        return "redirect:/service/details/"+u.getId();
     }
     //login
     @RequestMapping(value="/login", method=RequestMethod.POST)
@@ -100,7 +108,7 @@ public class UserController {
     	if(isAuthenticated) {
     		User u = userService.findByEmail(email);
     		session.setAttribute("userId", u.getId());
-    		return "redirect:/service/details";
+    		 return "redirect:/service/details/"+u.getId();
     	}else {
     	model.addAttribute("error", "Invalid Credentials. Please try again.");
     	return "logAndReg.jsp";
