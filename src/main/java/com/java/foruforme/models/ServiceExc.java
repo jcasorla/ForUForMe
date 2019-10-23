@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -27,6 +28,9 @@ public class ServiceExc {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+	
+	@Size(min=1, message="Service must have a name")
+	private String name;
 	
 	@Size(min=1, message="Service must have a description")
 	private String description;
@@ -46,15 +50,20 @@ public class ServiceExc {
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
-			name = "users_servicesexc",
+			name = "ratings",
 			joinColumns = @JoinColumn(name="serviceexc_id"),
 			inverseJoinColumns = @JoinColumn(name = "user_id")
 		)
 	
-//	@OneToMany(mappedBy="servicesexc", fetch = FetchType.LAZY)
-//		private List<Rating> ratings;
-	
 	private List <User> users; 
+	
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@OneToMany(mappedBy="serviceExc", fetch = FetchType.LAZY)
+		private List<Rating> ratings;
+	
 	
 	public ServiceExc() {
 	
@@ -112,6 +121,10 @@ public class ServiceExc {
 		public Date getCreatedAt() {
 			return createdAt;
 		}
+		
+//		public List<Rating> getRatings(){
+//			return ratings;
+//		}
 
 		public void setCreatedAt(Date createdAt) {
 			this.createdAt = createdAt;
@@ -132,7 +145,7 @@ public class ServiceExc {
 		public void setUsers(List<User> users) {
 			this.users = users;
 		}
-
+//
 //		public void setRating(List<Rating>ratings) {
 //			this.ratings = ratings;
 //		}

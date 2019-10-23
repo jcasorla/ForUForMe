@@ -28,12 +28,50 @@ public class Rating {
 	@Column(name="rating")
 	private int rating;
 	
+	@Column(name="author")
+	private String author;
+	
+	@Column(name="profilePic")
+	private String profilePic;
+	
+	public String getAuthor() {
+		return author;
+	}
+
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
+
+	public ServiceExc getServiceExc() {
+		return serviceExc;
+	}
+
+
+	public void setServiceExc(ServiceExc serviceExc) {
+		this.serviceExc = serviceExc;
+	}
 	@Column(name="comment")
 	private String comment;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn (name="user_id")
 	private User user;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn (name="serviceexc_id")
+	private ServiceExc serviceExc;
 	
 	
 	@Column(updatable=false)

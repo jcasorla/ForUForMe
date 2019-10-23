@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.foruforme.models.Rating;
 import com.java.foruforme.models.ServiceExc;
+import com.java.foruforme.models.User;
 import com.java.foruforme.services.ServiceExcService;
+import com.java.foruforme.services.UserService;
 import com.java.foruforme.validator.UserValidator;
 
 @Controller
@@ -39,6 +41,21 @@ public class ServiceExcController {
 		model.addAttribute("serviceExcService", oneService);
 		return "serviceDetails.jsp";
 	}
+	
+	
+	@PostMapping("/service/details/{id}")
+	public String addRating(@PathVariable("id")Long id, Model model, @ModelAttribute("addRating") Rating rating, BindingResult result, HttpSession session) {	
+	 	if(result.hasErrors()) {
+
+	 		return "redirect:/";
+	 	} else {
+		model.addAttribute("user", session.getAttribute("userId"));
+		ServiceExc oneService = serviceExcService.findServiceExc(id);
+		model.addAttribute("serviceExcService", oneService);
+		serviceExcService.addRating(rating);
+		return "serviceDetails.jsp";
+	}
+}
 }
 
 
