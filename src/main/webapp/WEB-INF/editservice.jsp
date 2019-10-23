@@ -11,7 +11,7 @@
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-		<title>Edit Idea</title>
+		<title>Edit Service</title>
 	</head>
 	<body>
 		<div class="container">
@@ -19,7 +19,7 @@
 			<div class="row">
 			
 				<div class="col-lg">
-					<h1>edit idea</h1>
+					<h1>edit service</h1>
 					<p><form:errors path="idea.*"/></p>			
 				
 					
