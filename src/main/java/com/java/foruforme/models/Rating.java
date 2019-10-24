@@ -1,6 +1,7 @@
 package com.java.foruforme.models;
 
 import java.util.Date;
+
 //import java.util.List;
 
 import javax.persistence.Column;
@@ -17,6 +18,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+//import com.java.foruforme.models.User;
+
 @Entity
 @Table(name="ratings")
 public class Rating {
@@ -30,8 +33,6 @@ public class Rating {
 	@Column(name="rating")
 	private int rating;
 	
-	@Column(name="author")
-	private String author;
 	
 	@Column(name="profilePic")
 	private String profilePic;
@@ -45,7 +46,7 @@ public class Rating {
     
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn (name="user_id")
-	private User user;
+	private User author;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn (name="serviceexc_id")
@@ -76,12 +77,7 @@ public class Rating {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+	
 	public String getProfilePic() {
 		return profilePic;
 	}
@@ -106,12 +102,7 @@ public class Rating {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+
 	public ServiceExc getServiceExc() {
 		return serviceExc;
 	}
@@ -119,7 +110,13 @@ public class Rating {
 		this.serviceExc = serviceExc;
 	}
     
-    
+	public User getAuthor() {
+		return author;
+	}
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
 	
 
 }

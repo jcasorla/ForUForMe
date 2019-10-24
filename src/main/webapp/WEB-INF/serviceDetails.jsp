@@ -49,13 +49,18 @@
 
 <!-- LEFT PANEL -->
 
-	<div class="leftPanel w-25 mx-3" style="border:1px green dotted">
-		<div class="image1 w-100" style="border :1px pink solid; height: 200px; width: 200px;">
+	<div class="leftPanel w-25 my-2 mx-3 shadow p-1 mb-5 bg-white rounded" style="">
+		<div class="image1 w-100" style="height: 200px; width: 200px;">
 		<img src="https://images.pexels.com/photos/1500459/pexels-photo-1500459.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="img-fluid">
 		</div>
 
-		<div class="serviceDescription w-100" style="border :1px pink solid; height: 400px; width: 200px;"> Service Description 
-		${serviceExcService.id}<br>
+		<div class="serviceDescription w-100 shadow-sm p-1 mb-5 bg-white rounded" style="; height: 200px; width: 200px;">  
+		<h5>${serviceExcService.name}</h5>
+		
+		 <h6>My Overall Rating: <span class="badge badge-info">
+			${serviceExcService.getAverageRating()}
+		</span> </h6>
+		${serviceExcService.serviceExcDate}<br>
 		${serviceExcService.address}<br>
 		${serviceExcService.description}<br>
 		
@@ -64,60 +69,63 @@
 
 	
 <!-- RIGHT PANEL -->
-	<div class="rightPanel w-50 mx-3 px-3"style="border:1px green dotted">
-		<div class="message w-100 overflow-auto" style="border :1px pink solid; height: 400px; width: 600px;"> 
+	<div class="rightPanel shadow-lg bg-white rounded w-50 mx-3 my-2 px-3 py-3"style="">
+		<div class="message w-100 overflow-auto shadow-sm p-3 mb-5 bg-white rounded" style="border:1px lightgray solid; border-radius:5px; height: 400px; width: 600px;"> 
 		
 
 <!-- LOOP HERE -->
-			<div class="rating w-100" style=" ">
+	<c:forEach items="${serviceExcService.getRatings()}" var="r">
+			<div class="rating w-100 " style=" ">
 				<div class="profilepic" style=" height: 60px; width: 60px;">
-					<img src="https://images.pexels.com/photos/555790/pexels-photo-555790.png?auto=compress&cs=tinysrgb&dpr=2&w=500" class="img-fluid" style="border-radius:50px;">
+					<img src="<c:out value ="${r.author.profilePic}"/>" style="height:50px; width:50px; border-radius:40px;">
 				</div>
 				
 				<div class="comment w-100 " style="; height: 100px;">
-				<h5>Jose C.  <img src="img/star.jpg"> </h5> 
-				<p> It was definitely worth staying here !</p>
+				
+				<h5>
+					Rated: <c:out value ="${r.rating}"/> out of 5!				 	 
+				 </h5> 			
+				<H6>
+					<c:out value ="${r.author.firstName}"/>
+					
+				</H6>
+				<p> 
+					<c:out value ="${r.comment}"/>
+				</p>
 				</div>	
-			</div>
+			</div><br>
+	 </c:forEach>
 <!-- END OF LOOP	 -->	
 			
-			
-<%-- 	<c:forEach items="${allRatings}" var="r">
-    <tr>
-      <th scope="row"> 
-      		<c:out value ="${r.rating}"/> 
-      </th>
-      <td><c:out value ="${r.comment}"/></td>
-      <td><c:out value ="${r.author}"/></td>
-    </tr>
-    </c:forEach>
- --%>
-
 </div>		
-		
-		
-		
-		
+			
 		<form:errors class="text-danger" path="sendMessage.*"/></p>
 		    
-		    <form:form method="POST" action="/service/details/${servicesexc.id}" modelAttribute="addRating">
-		    		      
+		    <form:form method="POST" action="/service/details/${serviceExcService.id}/addrating" modelAttribute="addRating">
+<%-- 		    		    <form:input type="text" value="${serviceExcService.id}" path="serviceExc"/> 
+		    		    <form:input type="text" value="${userId}" path="author"/>  --%>
 		    		 <p>
 		            <form:label path="comment">Leave a Rating!</form:label>
 		            <br>
 		            <form:textarea rows="5" cols="40" path="comment"/>
 		            <br>
 		            <form:select path="rating">
-		            	<form:option value="1"/>
+		            	<form:option value="1"/> 	 
 		            	<form:option value="2"/>
 		            	<form:option value="3"/>
 		            	<form:option value="4"/>
 		            	<form:option value="5"/>
 
-		            </form:select> Stars
+		            </form:select> Stars 
+		            <img src="https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-flat/48/Mod_Add-On_1-35-512.png" style="width:25px; height:25px;">
+		            <img src="https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-flat/48/Mod_Add-On_1-35-512.png" style="width:25px; height:25px;">
+		            <img src="https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-flat/48/Mod_Add-On_1-35-512.png" style="width:25px; height:25px;">
+		            <img src="https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-flat/48/Mod_Add-On_1-35-512.png" style="width:25px; height:25px;">
+		            <img src="https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-flat/48/Mod_Add-On_1-35-512.png" style="width:25px; height:25px;">
+		            
 		        </p>
 
-		        <input type="submit" class="btn btn-outline-primary btn-sm mx-auto"value="addRating"/>
+		        <input type="submit" class="btn btn-outline-primary btn-sm mx-auto"value="Add Rating!"/>
 		    </form:form>
 	</div>
 </div>

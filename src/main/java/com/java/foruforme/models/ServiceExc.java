@@ -44,6 +44,8 @@ public class ServiceExc {
 	@Size(min=1, message="State is required")
 	private String state;
 	
+	public int averageRating;
+	
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -167,11 +169,23 @@ public class ServiceExc {
 			this.ratings = ratings;
 		}
 
+		public int getAverageRating() {
+			getRatings();
+			averageRating=0;
+			int sum = 0;
+			for (int i = 0; i< ratings.size(); i++) {
+				sum = sum + ratings.get(i).getRating();
+			}
+			averageRating = sum/ratings.size();
+			return averageRating;
+		}
+
+		public void setAverageRating(int averageRating) {
+			this.averageRating = averageRating;
+		}
 		
-//
-//		public void setRating(List<Rating>ratings) {
-//			this.ratings = ratings;
-//		}
+		
+
 		
         
 
