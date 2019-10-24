@@ -171,6 +171,10 @@ public class ServiceExc {
 
 		public int getAverageRating() {
 			getRatings();
+			
+			if(getRatings().size()==0) {
+				return 0;
+			}
 			averageRating=0;
 			int sum = 0;
 			for (int i = 0; i< ratings.size(); i++) {
