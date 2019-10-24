@@ -37,9 +37,17 @@ public class ServiceExcController {
 
 	//view
 	@RequestMapping("/service/details/{id}")
-	public String view(@PathVariable("id")Long id, Model model, @ModelAttribute("sendMessage") ServiceExc serviceExc, @ModelAttribute("addRating") Rating rating) {
+	public String view(@PathVariable("id")Long id, Model model, @ModelAttribute("sendMessage") ServiceExc serviceExc, @ModelAttribute("addRating") Rating rating, HttpSession session) {
+		User user = userService.findUserById((Long) session.getAttribute("userId"));
 		ServiceExc oneService = serviceExcService.findServiceExc(id);
+		List<Rating> ratings = serviceExc.getRatings();
+		
+		System.out.println("hi" + ratings); //RETURNS NULL??
+		
+		model.addAttribute("ratings", ratings);
+		model.addAttribute("user", user);
 		model.addAttribute("serviceExcService", oneService);
+		session.setAttribute("userId", session.getAttribute("userId"));
 		return "serviceDetails.jsp";
 	}
 	
@@ -148,19 +156,38 @@ public class ServiceExcController {
 	  }
 
 	
-	@PostMapping("/service/details/{id}")
+	@PostMapping("/service/details/{id}/addrating")
 	public String addRating(@PathVariable("id")Long id, Model model, @ModelAttribute("addRating") Rating rating, BindingResult result, HttpSession session) {	
 	 	if(result.hasErrors()) {
 
 	 		return "redirect:/";
 	 	} else {
+	 	session.setAttribute("userId", session.getAttribute("userId"));
 		model.addAttribute("user", session.getAttribute("userId"));
+
 		ServiceExc oneService = serviceExcService.findServiceExc(id);
 		model.addAttribute("serviceExcService", oneService);
 		serviceExcService.addRating(rating);
-		return "serviceDetails.jsp";
-		}
+
+
+	 	ServiceExc service	= serviceExcService.findServiceExc(id);
+	 	Long userId = (Long) session.getAttribute("userId");
+	 	User user = userService.findUserById(userId);
+	 	
+	 	Rating newRating = new Rating();
+	 	newRating.setAuthor(user);
+	 	newRating.setServiceExc(service);
+	 	newRating.setRating(rating.getRating());
+	 	newRating.setComment(rating.getComment());
+	 	
+	 	serviceExcService.createRating(newRating);
+	 	service.getRatings().add(newRating);
+	 	serviceExcService.submitEdit(service);
+ 	
+	 	return "redirect:/service/details/"+id;
+
 	}
+}
 	
 	  @RequestMapping(value="/services/{id}/book")
 	  public String likeIdea(@PathVariable("id") Long id, HttpSession session) {

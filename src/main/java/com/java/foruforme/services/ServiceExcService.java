@@ -2,6 +2,7 @@ package com.java.foruforme.services;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -70,6 +71,10 @@ public List<ServiceExc> getSearchServices(String description) {
 }
 
 //RATINGS 
+
+public Rating createRating(Rating rating) {
+	return ratingRepository.save(rating);
+}
 
 public Rating addRating(Rating rating) {
 	return ratingRepository.save(rating);
