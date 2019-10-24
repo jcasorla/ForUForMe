@@ -2,6 +2,8 @@ package com.java.foruforme.controllers;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -157,8 +159,41 @@ public class ServiceExcController {
 		model.addAttribute("serviceExcService", oneService);
 		serviceExcService.addRating(rating);
 		return "serviceDetails.jsp";
+		}
 	}
-}
+	
+	  @RequestMapping(value="/services/{id}/book")
+	  public String likeIdea(@PathVariable("id") Long id, HttpSession session) {
+
+		  ServiceExc service = serviceExcService.findServiceExc(id);
+		  Long userid= (Long) session.getAttribute("userId");
+		  
+		  User user = userService.findUserById(userid);
+		  service.getUsers().add(user);
+		  
+		  
+
+		  serviceExcService.submitEdit(service);
+		  
+
+		  return "redirect:/index";
+	  }
+	  @RequestMapping(value="/services/{id}/cancel")
+	  public String cancelIdea(@PathVariable("id") Long id, HttpSession session) {
+		  User user = userService.findUserById((Long) session.getAttribute("userId"));
+		  
+		 
+		  ServiceExc service = serviceExcService.findServiceExc(id);
+		  
+
+		  
+		  service.getUsers().remove(user);
+		  
+		  serviceExcService.submitEdit(service);
+		  return "redirect:/index";
+		  
+		
+	  }
 
 }
 

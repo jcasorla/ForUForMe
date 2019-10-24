@@ -101,7 +101,7 @@
 				<tbody>
 					<c:forEach items="${services}" var="service">
 						<tr>
-						    <td><a href="/services/${service.id}"><c:out value="${service.name}"/></a></td>
+						    <td><a href="/service/details/${service.id}"><c:out value="${service.name}"/></a></td>
 						    <td><c:out value="${service.user.userName}"/></td>
 						    <td>${service.state}</td>
 						    <td>
