@@ -178,6 +178,21 @@ public class UserController {
   
     
 
+//    @RequestMapping("/about/{id}")
+//    public String profile(@Valid @PathVariable("id") Long id,@ModelAttribute("user")User user, Model model,HttpSession session) {
+//    	if(session.getAttribute("userId") == null) {
+////    		System.out.println("userId");
+//   		return "redirect:";
+//	   	}else {
+//	   		User user2 = userService.findUserById(id);
+//	   		model.addAttribute("user", user2);
+//	//   		System.out.println("userId");
+//	   		return "profile.jsp";
+//	   	}
+//    	
+//    
+//    	
+//    }
     
 
    // update/editing profile

@@ -27,7 +27,7 @@
         <a class="nav-link" href="/dashboard"> Dashboard <span class="sr-only">(current)</span></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/about/${user}">Profile</a>
+        <a class="nav-link" href="/about/${user.id}">Profile</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="/">Register</a>
