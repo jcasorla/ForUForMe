@@ -37,21 +37,27 @@
   </div>
 </nav>
 <div class="jumbotron">
-	<h1> Welcome ${user.userName}!!!</h1>
+	<h1> Welcome ${user.firstName}!!!</h1>
 	<div class="card border-primary mb-3" style="max-width: 20rem;">
 	  <div class="card-header">About Me:</div>
 	  <div class="card-body">
-	  <img src="img/profile.jpeg" class="card-img-top" alt="profile" style="width:25%">
+	<!--   <img src="img/profile.jpeg" class="card-img-top" alt="profile" style="width:25%"> -->
+					<img src="${user.profilePic}" class="img-fluid" style="border-radius:50px;">
+					
 	    <h4 class="card-title">Some interesting things about myself:</h4>
-	    <p class="card-text">I love cooking, going outdoors, gym sessions. I like to volunteer.... bla bla bla</p>
+	    <p class="card-text">${user.description} </p>
+	    	<a href="/about/${user.id}/edit" class="btn btn-outline-primary" style="margin-top:20px">Edit</a>
   	</div>
   	</div>
   	
   	<div class="card border-primary mb-3" style="max-width: 20rem;">
 		  <div class="card-header">Feedback provided</div>
 		  <div class="card-body">
+		  <c:forEach items="${ratings}" var="rating">
 		    <h4 class="card-title">What other say about me...</h4>
 		    <p class="card-text">Awesome guest! Nice and helpful.</p>
+		    <p class="card-text">${rating.comment}</p>
+		    </c:forEach>
 	  	</div>
 	</div>
 

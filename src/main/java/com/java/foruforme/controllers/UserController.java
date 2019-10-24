@@ -40,11 +40,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	//index view
-	@RequestMapping("/index")
-    public String home() {
-    	return "index.jsp";
-    }
+	
 
 
 
@@ -112,47 +108,66 @@ public class UserController {
     	}
     }
     
+  //index view
+  	@RequestMapping("/index")
+      public String home(HttpSession session, Model model) {
+  		Long  userId = (Long) session.getAttribute("userId");
+  		System.out.println(userId);
+  		model.addAttribute("user", userId);
+      	return "index.jsp";
+      }
+  	
+    //render profile
     @RequestMapping("/about")
     public String profile(@Valid @ModelAttribute("user")User user) {
     	return "profile.jsp";
     }
     
+    //shows user Id profile
     @RequestMapping("/about/{id}")
     public String profile(@Valid @PathVariable("id") Long id,@ModelAttribute("user")User user, Model model,HttpSession session) {
     	if(session.getAttribute("userId") == null) {
-//    		System.out.println("userId");
+    		System.out.println("userId");
    		return "redirect:";
    	}else {
    		User user2 = userService.findUserById(id);
    		model.addAttribute("user", user2);
-//   		System.out.println("userId");
+   		System.out.println("userId");
    		return "profile.jsp";
-   	}
-    	
+   	}	
     }
+
     
+  //display of profile edit page
+    @RequestMapping("/about/{id}/edit")
+    public String editProfile(@Valid @PathVariable("id") Long id,@ModelAttribute("user")User user, Model model,HttpSession session) {
+    	
+    	if(session.getAttribute("userId") == null) {
+    		return "redirect:";
+    	}else {
+    	User user2 = userService.findUserById(id);
+    	model.addAttribute("user",user2);
+    	return "editProfile.jsp";
+    	}
+    }
+  
     
-    //idea to avoid hacking profile form URL to work on it later
-//    @RequestMapping("/about/{id}")
-//   	public String displayEditPage(Model model, @ModelAttribute("user") User myUser, @PathVariable("id") Long uId,
-//   			HttpSession session) {
-//
-//   		// To avoid hacking via URL /profile/{id}
-//
-//   		Long userId = (Long) session.getAttribute("userId");
-//   		User u = userService.findUserById(userId);
-//
-//   		User profileUser = userService.findUserById(userId);
-//
-//   		if (u.getId() ==  profileUser.getUserName().getId()) {
-//
-//
-//   			return "profile.jsp";
-//   		} else {
-//   			return "redirect:/";
-//   		}
-//   	}
+   // update/editing profile
+  @RequestMapping(value="/about/{id}/edit", method=RequestMethod.PUT)
+  public String update(@Valid @ModelAttribute("user")User user, BindingResult result,@PathVariable("id") Long id) {
+      
+  	if (result.hasErrors()) {
+      	return "redirect:/about/"+id+"/edit";
+      } else {
+      	User user2 = userService.findUserById(id);
+      	user2.setDescription(user.getDescription());
+      	user2.setProfilePic(user.getProfilePic());
+      	userService.updateProfile(user2);
+      	return "redirect:/about/"+ id;
+      }
+  }
     
+
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         // invalidate session
@@ -160,5 +175,26 @@ public class UserController {
     	session.invalidate();
     	return "redirect:";
     }
+    
+    //idea to avoid hacking profile form URL to work on it later
+//  @RequestMapping("/about/{id}")
+// 	public String displayEditPage(Model model, @ModelAttribute("user") User myUser, @PathVariable("id") Long uId,
+// 			HttpSession session) {
+//
+// 		// To avoid hacking via URL /profile/{id}
+//
+// 		Long userId = (Long) session.getAttribute("userId");
+// 		User u = userService.findUserById(userId);
+//
+// 		User profileUser = userService.findUserById(userId);
+//
+// 		if (u.getId() ==  profileUser.getUserName().getId()) {
+//
+//
+// 			return "profile.jsp";
+// 		} else {
+// 			return "redirect:/";
+// 		}
+// 	}
 
 }
