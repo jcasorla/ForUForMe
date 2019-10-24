@@ -38,6 +38,9 @@ public class User {
 	@Size(min=1, message="Username is required!")
     private String userName;
 	
+	@Size(min=1, message="Description is required!")
+    private String description;
+	
     @Size(min=1, message="First name is required!")
     private String firstName;
     
@@ -150,6 +153,13 @@ public class User {
 	public void setServices(List<ServiceExc> services) {
 		this.services = services;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 	
 }

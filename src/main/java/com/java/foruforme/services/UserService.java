@@ -52,4 +52,11 @@ public class UserService {
             }
         }
     }
+
+
+	public User updateProfile(User user) {
+		userRepository.save(user);
+		return user;
+		
+	}
 }
