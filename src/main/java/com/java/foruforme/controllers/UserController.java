@@ -42,9 +42,20 @@ public class UserController {
 
 	//index view
 	@RequestMapping("/index")
-    public String home() {
+    public String home(HttpSession session, Model model) {
+		Long userId = (Long) session.getAttribute("userId");
+        User u = userService.findUserById(userId); 
+        List<ServiceExc> services = serviceExcService.allServiceExc();
+		model.addAttribute("services", services);
+        model.addAttribute("user",u);
+		
     	return "index.jsp";
     }
+	
+//	@RequestMapping("/index")
+//    public String home() {
+//    	return "index.jsp";
+//    }
 
 
 
@@ -122,14 +133,37 @@ public class UserController {
     	if(session.getAttribute("userId") == null) {
 //    		System.out.println("userId");
    		return "redirect:";
-   	}else {
-   		User user2 = userService.findUserById(id);
-   		model.addAttribute("user", user2);
-//   		System.out.println("userId");
-   		return "profile.jsp";
-   	}
+	   	}else {
+	   		User user2 = userService.findUserById(id);
+	   		model.addAttribute("user", user2);
+//	   	 Long userId = (Long) session.getAttribute("userId");
+//	        User u = userService.findUserById(userId); 
+	        List<ServiceExc> services = serviceExcService.allServiceExc();
+			model.addAttribute("services", services);
+//	        model.addAttribute("user",u);
+	//   		System.out.println("userId");
+	   		return "profile.jsp";
+	   	}
+    	
+    
     	
     }
+    
+//    @RequestMapping("/about/{id}")
+//    public String profile(@Valid @PathVariable("id") Long id,@ModelAttribute("user")User user, Model model,HttpSession session) {
+//    	if(session.getAttribute("userId") == null) {
+////    		System.out.println("userId");
+//   		return "redirect:";
+//	   	}else {
+//	   		User user2 = userService.findUserById(id);
+//	   		model.addAttribute("user", user2);
+//	//   		System.out.println("userId");
+//	   		return "profile.jsp";
+//	   	}
+//    	
+//    
+//    	
+//    }
     
     
     //idea to avoid hacking profile form URL to work on it later

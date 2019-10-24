@@ -25,7 +25,12 @@
 					
 					<form:form action="/services/${oneservice.id}" method="post" modelAttribute="oneservice">
 						<input type="hidden" name="_method" value="put">
-					<p>
+						<p>
+					        <form:label path="name">Name</form:label>
+					        
+					        <form:input path="name"/>
+					    </p>
+						<p>
 					        <form:label path="description">Description</form:label>
 					        
 					        <form:input path="description"/>

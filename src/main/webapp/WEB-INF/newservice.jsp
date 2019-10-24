@@ -24,7 +24,12 @@
 				
 					
 					<form:form action="/service" method="post" modelAttribute="serviceExc">
-					
+						
+						<p>
+					        <form:label path="name">Name</form:label>
+					        
+					        <form:input path="name"/>
+					    </p>
    						<p>
 					        <form:label path="description">Description</form:label>
 					        

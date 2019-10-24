@@ -71,17 +71,26 @@
 		</tr>
 		</thead>
 	 	<tbody>	
-		<%-- <c:forEach items="${serviceexc}" var="idea"> --%>
+	
 		
-
-		 <tr class="table-active">
-			<td><a href = "/ideas/${serviceexc.id}" ><c:out value = "${serviceexc.description}"></a></c:out></td>
-		<%-- 	<td><c:out value = "${idea.ideaDate}"></c:out></td>
-			<td><c:out value = "${idea.description}"></c:out></td> --%>
- 			<td><c:out value = "${user.userName}"></c:out></td>
- 		<%-- 	<td><a href="/service/${serviceexc.id}/join" class="btn btn-outline-primary">Like</a></td> --%>
-
-		<%-- </c:forEach> --%>
+		<table class="table table-striped table-dark table-hover ">
+			<thead>
+				<tr>
+			    	<th scope="col">Name</th>						      	
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${user.services}" var="serv">
+				<tr>
+				  	<td>${serv.name}</td>
+				    
+				   
+				 </tr>
+			 	</c:forEach>
+				
+			
+			 </tbody>
+		</table>
 		</tbody>
 	</table>
 </div>

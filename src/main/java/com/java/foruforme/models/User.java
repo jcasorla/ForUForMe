@@ -74,7 +74,7 @@ public class User {
 			joinColumns = @JoinColumn(name="user_id"),
 			inverseJoinColumns = @JoinColumn(name = "serviceexc_id")
 		)
-	private List <User> users; 
+	private List <ServiceExc> services; 
     
     @PrePersist
     protected void onCreate(){
@@ -144,11 +144,12 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public List<User> getUsers() {
-		return users;
+	public List<ServiceExc> getServices() {
+		return services;
 	}
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setServices(List<ServiceExc> services) {
+		this.services = services;
 	}
+	
 	
 }
