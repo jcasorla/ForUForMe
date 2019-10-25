@@ -57,7 +57,16 @@ public class ServiceExc {
 			inverseJoinColumns = @JoinColumn(name = "user_id")
 		)
 	
-	private List <User> users; 
+	private List <User> users;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "users_servicesexc",
+			joinColumns = @JoinColumn(name="serviceexc_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+		)
+	
+	private List <User> servedUsers; 
 	
 	//host
 	@ManyToOne(fetch= FetchType.LAZY)
@@ -186,6 +195,14 @@ public class ServiceExc {
 
 		public void setAverageRating(int averageRating) {
 			this.averageRating = averageRating;
+		}
+
+		public List<User> getServedUsers() {
+			return servedUsers;
+		}
+
+		public void setServedUsers(List<User> servedUsers) {
+			this.servedUsers = servedUsers;
 		}
 		
 		

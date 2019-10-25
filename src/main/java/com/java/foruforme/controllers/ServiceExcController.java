@@ -193,11 +193,13 @@ public class ServiceExcController {
 	  public String likeIdea(@PathVariable("id") Long id, HttpSession session) {
 
 		  ServiceExc service = serviceExcService.findServiceExc(id);
+		  
 		  Long userid= (Long) session.getAttribute("userId");
 		  
 		  User user = userService.findUserById(userid);
-		  service.getUsers().add(user);
-		  
+		 
+
+		  service.getServedUsers().add(user);
 		  
 
 		  serviceExcService.submitEdit(service);
@@ -214,7 +216,8 @@ public class ServiceExcController {
 		  
 
 		  
-		  service.getUsers().remove(user);
+		  
+		  service.getServedUsers().remove(user);
 		  
 		  serviceExcService.submitEdit(service);
 		  return "redirect:/index";

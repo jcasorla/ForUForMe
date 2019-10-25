@@ -111,7 +111,7 @@
 		                        </c:when>
 		                        <c:otherwise>
 	                        	    <c:set var="attending" value="${false}"/>
-								    <c:forEach items="${service.getUsers()}" var="goer">
+								    <c:forEach items="${service.getServedUsers()}" var="goer">
 								        <c:if test="${goer == user}">
 								            <c:set var="attending" value="${true}"/>
 								        </c:if>
